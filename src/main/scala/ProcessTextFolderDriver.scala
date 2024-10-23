@@ -34,10 +34,10 @@ object ProcessTextFolderDriver extends Serializable {
       .getOrCreate()
     import spark.implicits._
 
-    spark.udf.register("getBookText", ProcessTextFolder.getBookText(_:String):Seq[String])
-    spark.udf.register("getBookAuthor", ProcessTextFolder.getBookAuthor(_:Seq[String]):String)
-    spark.udf.register("getBookTitle", ProcessTextFolder.getBookTitle(_:Seq[String]):String)
-    spark.udf.register("getBookId", ProcessTextFolder.getBookId(_:Seq[String]):Int)
+    spark.udf.register("getBookText", ProcessTextFolderDriver.getBookText(_:String):Seq[String])
+    spark.udf.register("getBookAuthor", ProcessTextFolderDriver.getBookAuthor(_:Seq[String]):String)
+    spark.udf.register("getBookTitle", ProcessTextFolderDriver.getBookTitle(_:Seq[String]):String)
+    spark.udf.register("getBookId", ProcessTextFolderDriver.getBookId(_:Seq[String]):Int)
 
     val wholeTextDf = spark.read.option("wholetext", true).text(inputPath)
     val finalDf = wholeTextDf.selectExpr("getBookText(value) as text").
