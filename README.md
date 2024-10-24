@@ -27,7 +27,7 @@ Run the code using `spark-submit` commands as follows. Feel free to download mor
 1. Convert the text files to parquet: `spark-submit --class org.annabellemarsh.gutenberg.ProcessTextFolderDriver target/scala-2.13/gutenberg_2.13-0.1-SNAPSHOT.jar resources/books resources/books.parquet`
 
 2. View the top words in a book by its id (replace 11 and 10 with the book_id and the limit, respectively): `spark-submit --class org.annabellemarsh.gutenberg.SearchWordsDriver target/scala-2.13/gutenberg_2.13-0.1-SNAPSHOT.jar resources/books.parquet 11 --limit 20` You should see a data frame written near the end of the logs like this:
-
+```
 +----+---------+
 |word|frequency|
 +----+---------+
@@ -42,10 +42,11 @@ Run the code using `spark-submit` commands as follows. Feel free to download mor
 |it  |357      |
 |was |329      |
 +----+---------+
+```
 only showing top 10 rows
 
 3. View which books have the most copies of a word (replace fish and 5 with the word you're searching for and the limit, respectively)`spark-submit --class org.annabellemarsh.gutenberg.SearchDocumentsDriver target/scala-2.13/gutenberg_2.13-0.1-SNAPSHOT.jar resources/books.parquet fish --limit 5`
-
+```
 +-----------------------------------------+---------------------------+----+----------+
 |title                                    |author                     |id  |fish_count|
 +-----------------------------------------+---------------------------+----+----------+
@@ -55,6 +56,7 @@ only showing top 10 rows
 |Middlemarch                              |George Eliot               |145 |3         |
 |Frankenstein; Or, The Modern Prometheus  |Mary Wollstonecraft Shelley|84  |3         |
 +-----------------------------------------+---------------------------+----+----------+
+```
 
 ## Scalability
 
